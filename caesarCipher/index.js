@@ -15,6 +15,7 @@ function caesarCipher(str, shift) {
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
     const idx = alphabetArr.indexOf(char);
+    //we find the index of the current letter in the alphabet array
 
     if (idx === -1) {
       res += char;
@@ -22,6 +23,8 @@ function caesarCipher(str, shift) {
     }
 
     const encodedIdx = (idx + shift) % 26;
+    //we add the offset/shift to the current index, to get the next index
+    //we also use mod 26 so that 26/z is the ceiling, and it will reset to a after
     res += alphabetArr[encodedIdx];
   }
   return res;
