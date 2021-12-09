@@ -7,7 +7,17 @@
 //   vowels('aEiOu') --> 5
 //   vowels('I am a world-class developer using iterations') --> 16
 
-function vowels(str) {}
+function vowels(str) {
+  let vowels = ["a", "e", "i", "o", "u"];
+  let count = 0;
+  str = str.toLowerCase();
+  for (let letter of str) {
+    if (vowels.indexOf(letter) !== -1) {
+      count++;
+    }
+  }
+  return count;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
