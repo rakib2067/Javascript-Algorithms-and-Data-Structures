@@ -5,19 +5,36 @@
 //Binary search has time complexity of O(log n) for sorted arrays
 const binarySearch = (sortedArr, value) => {
   let leftPointer = 0;
+  //left pointer will always start at the first value of the array
   let rightPointer = sortedArr.length - 1;
+  //will always start at the last value in the array
 
   while (leftPointer <= rightPointer) {
+    //this while loop checks that the value is within the array
+
     let middleIndex = Math.floor((leftPointer + rightPointer) / 2);
+    //we get the middleindex by either using Floor or Ceil, and dividing the sum of left and right pointers
+
     let middleValue = sortedArr[middleIndex];
+    //middle Index value
+
     if (middleValue === value) {
       return middleIndex;
+      //the value is within the array and we return its index
     } else if (middleValue < value) {
       leftPointer = middleIndex + 1;
+
+      //if the middle value is smaller than the value, then we reset leftpointer to the position after the middleindex
+      //on reset this will cause the middle index calculation to target the upper half the array
     } else {
       rightPointer = middleIndex - 1;
+
+      //if the middle value is larger than the value, then we reset rightPointer to the position before the middleindex
+      //on reset this will cause the middle index calculation to target the bottom half the array
     }
   }
+  //if the value is not within the array we return -1
+  //this will be indicated by the leftpointer being greater than the right pointer
   return -1;
 };
 
