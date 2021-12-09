@@ -6,6 +6,9 @@
 // linearSearchIncludes(foods, "pizza") --> true
 // linearSearchFind(foods, food => food === "pizza") --> "pizza"
 
+//Linear search is the best method to use when sorting thorugh an unsorted array
+//For sorted arrays we can get much better times using binary search
+
 function linearSearchIndexOf(arr, val) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === val) {
