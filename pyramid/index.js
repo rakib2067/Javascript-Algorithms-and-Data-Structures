@@ -18,14 +18,15 @@ function pyramid(n) {
     let pyramid = "";
 
     for (let left = 1; left <= n - i; left++) {
-      //first loop for 2
-      //2-1=1
+      //Add space based on n-current level
       pyramid += " ";
     }
     for (let hash = 1; hash <= 2 * i - 1; hash++) {
+      //Add hash based on 2* current level -1
       pyramid += "#";
     }
     for (let right = 1; right <= n - i; right++) {
+      //Add space based on n-current level
       pyramid += " ";
     }
 
