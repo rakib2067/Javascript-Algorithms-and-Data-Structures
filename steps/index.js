@@ -16,7 +16,26 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+function steps(n) {
+  for (let i = 1; i <= n; i++) {
+    let step = "";
+    //loop over each step starting from the first step
+    //now we want to create 2 nested loops 1 to repeat hash
+    //one to repeat spaces
+    for (let hash = 1; hash <= i; hash++) {
+      //this loop repeats the hash based on current n number
+      step += "#";
+    }
+    for (let space = 1; space <= n - i; space++) {
+      //we want to repeat spaces based on n-1
+      //the amount of space in the current loop
+      //i=1 3-1=2;
+      //first lloop= " " i=2
+      step += " ";
+    }
+    console.log(step);
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
