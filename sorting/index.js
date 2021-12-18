@@ -20,7 +20,25 @@ function bubbleSort(arr) {
 }
 
 //selectionSort works by having sorted data accumulate at start of array
-function selectionSort(arr) {}
+function selectionSort(arr) {
+  for (let outer = 0; outer < arr.length; outer++) {
+    //we loop through whole array
+    let swapIdx = outer;
+    //in each iteration we initially store current index position
+    for (let inner = outer + 1; inner < arr.length; inner++) {
+      //we then loop over the array again, only now starting from the index after
+      if (arr[inner] < arr[swapIdx]) {
+        //if right index smaller than left it will be stored in swapidx
+        //for each number we compare it to the swapidx, and try find the smallest number
+        //ultimately, the smallest number pos will be in swapidx and be swapped
+        swapIdx = inner;
+      }
+    }
+    swap(arr, outer, swapIdx);
+    //at the end of each iteration we perform the swap with the outeridx to swapidx
+  }
+  return arr;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -62,7 +80,7 @@ describe("Bubble Sort", () => {
   });
 });
 
-describe.skip("Selection Sort", () => {
+describe("Selection Sort", () => {
   it("sorts an array", () => {
     assert.deepEqual(selectionSort([5, 1, 3, 2, 4]), [1, 2, 3, 4, 5]);
   });
