@@ -5,10 +5,17 @@
 
 function stringPatternSearch(text, pattern) {
   let count = 0;
+  //Used to count how many times the pattern occurs
 
   for (let i = 0; i < text.length; i++) {
+    //we loop over every character in the string
     for (let j = 0; j < pattern.length; j++) {
+      //for every character we do a nested loop continuing the string
+      //we do this to try search for the pattern
       const char = pattern[j];
+      if (char !== pattern[i + j]) {
+        continue;
+      }
     }
   }
 }
