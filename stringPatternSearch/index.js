@@ -3,7 +3,15 @@
 // stringPatternSearch("lollipop", "lol") --> 1
 // stringPatternSearch("lolol", "lol") --> 2
 
-function stringPatternSearch(text, pattern) {}
+function stringPatternSearch(text, pattern) {
+  let count = 0;
+
+  for (let i = 0; i < text.length; i++) {
+    for (let j = 0; j < pattern.length; j++) {
+      const char = pattern[j];
+    }
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
