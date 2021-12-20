@@ -11,6 +11,7 @@ function bubbleSort(arr) {
     //iterate over length of array
     for (let j = 0; j < arr.length - i; j++) {
       //for each iteration we iterate over the whole array and resort
+      //sort one value
       if (arr[j] > arr[j + 1]) {
         swap(arr, j, j + 1);
       }
