@@ -25,6 +25,11 @@ function selectionSort(arr) {
     //we loop through whole array
     let swapIdx = outer;
     //in each iteration we initially store current index position
+
+    //at end of each loop there will be a swap with the outer index and the swap idx
+    //In cases where we start at the smallest number already, the outer and swap values are the same
+    //therefore a swap will not happen
+
     for (let inner = outer + 1; inner < arr.length; inner++) {
       //we then loop over the array again, only now starting from the index after
       if (arr[inner] < arr[swapIdx]) {

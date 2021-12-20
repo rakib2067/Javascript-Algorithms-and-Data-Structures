@@ -9,15 +9,24 @@ function stringPatternSearch(text, pattern) {
 
   for (let i = 0; i < text.length; i++) {
     //we loop over every character in the string
+
     for (let j = 0; j < pattern.length; j++) {
-      //for every character we do a nested loop continuing the string
-      //we do this to try search for the pattern
+      //for every character we do a nested loop over the length of the pattern
+
       const char = pattern[j];
-      if (char !== pattern[i + j]) {
-        continue;
+      if (char !== text[i + j]) {
+        //we check if the current pattern matches the provided pattern
+        //if at any point it doesn't we break out
+        break;
+      }
+
+      if (j === pattern.length - 1) {
+        //if the pattern matches, we increment count
+        count++;
       }
     }
   }
+  return count;
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
