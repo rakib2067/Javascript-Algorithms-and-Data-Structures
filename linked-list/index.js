@@ -57,6 +57,14 @@ class LinkedList {
     this.length--;
     return last;
   }
+  push(data) {
+    if (this.length == 0) {
+      return this.unshift(data);
+    }
+    let last = this.getLast();
+    last.next = new Node(data, null);
+    this.length++;
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
