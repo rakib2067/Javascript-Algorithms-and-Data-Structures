@@ -30,6 +30,33 @@ class LinkedList {
     }
     return currentNode;
   }
+  clear() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  shift() {
+    if (!this.head) {
+      return;
+    }
+    let removed = this.head;
+    this.head = this.head.next;
+    this.length = this.length - 1;
+    return removed;
+  }
+  pop() {
+    const last = this.getLast();
+    let current = this.head;
+    if (last == current) {
+      return this.shift();
+    }
+    while (current.next !== last) {
+      current = current.next;
+    }
+    current.next = null;
+    this.length--;
+    return last;
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -118,7 +145,7 @@ describe("clear()", () => {
   });
 });
 
-describe.skip("shift()", () => {
+describe("shift()", () => {
   it("removes AND returns first node, updates length for linked list w/ one node.", () => {
     const l = new LinkedList();
     l.unshift(1);
@@ -145,7 +172,7 @@ describe.skip("shift()", () => {
   });
 });
 
-describe.skip("pop()", () => {
+describe("pop()", () => {
   it("removes AND returns last node, decreases length.", () => {
     const l = new LinkedList();
     l.unshift("b");
@@ -168,7 +195,7 @@ describe.skip("pop()", () => {
   });
 });
 
-describe.skip("push(data)", () => {
+describe("push(data)", () => {
   it("adds to the end of the list and increases length.", () => {
     const l = new LinkedList();
     l.unshift(1);
