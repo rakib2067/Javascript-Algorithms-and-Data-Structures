@@ -77,6 +77,14 @@ class LinkedList {
     }
     return current;
   }
+  set(index, data) {
+    if (index < 0 || index > this.length) {
+      return null;
+    }
+    let node = this.get(index);
+    node.data = data;
+    return true;
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
