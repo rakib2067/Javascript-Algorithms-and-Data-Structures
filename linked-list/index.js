@@ -65,6 +65,18 @@ class LinkedList {
     last.next = new Node(data, null);
     this.length++;
   }
+  get(index) {
+    if (index < 0 || index > this.length) {
+      return null;
+    }
+    let count = 0;
+    let current = this.head;
+    while (count < index) {
+      current = current.next;
+      count++;
+    }
+    return current;
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -220,7 +232,7 @@ describe("push(data)", () => {
   });
 });
 
-describe.skip("get(index)", () => {
+describe("get(index)", () => {
   it("returns null on negative or out of bounds index.", () => {
     const l = new LinkedList();
     l.push("Kevin");
@@ -239,7 +251,7 @@ describe.skip("get(index)", () => {
   });
 });
 
-describe.skip("set(index, data)", () => {
+describe("set(index, data)", () => {
   it("returns falsy value on out of bounds or negative index.", () => {
     const l = new LinkedList();
     l.push(2);
@@ -255,7 +267,7 @@ describe.skip("set(index, data)", () => {
   });
 });
 
-describe.skip("remove(index)", () => {
+describe("remove(index)", () => {
   it("returns falsy value on out of bounds OR negative index.", () => {
     const l = new LinkedList();
     l.push(2);
@@ -288,7 +300,7 @@ describe.skip("remove(index)", () => {
   });
 });
 
-describe.skip("insert(index, data)", () => {
+describe("insert(index, data)", () => {
   it("returns false on index greater than length or negative index.", () => {
     const l = new LinkedList();
     assert.equal(l.insert(1, "meow"), false);
