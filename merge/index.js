@@ -6,29 +6,17 @@
 // merge([4,6,7], [1,5]) === [1,4,5,6,7]
 
 function merge(sortedArr1, sortedArr2) {
-  let res = [];
-  let p1 = 0;
-  let p2 = 0;
-
-  while (p1 < sortedArr1.length && p2 < sortedArr2.length) {
-    if (sortedArr1[p1] < sortedArr2[p2]) {
-      res.push(sortedArr1[p1]);
-      p1++;
+  let sorted = [];
+  let left = [...sortedArr1];
+  let right = [...sortedArr2];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      sorted.push(left.shift());
     } else {
-      res.push(sortedArr2[p2]);
-      p2++;
+      sorted.push(right.shift());
     }
   }
-
-  while (p1 < sortedArr1.length) {
-    res.push(sortedArr1[p1]);
-    p1++;
-  }
-  while (p2 < sortedArr2.length) {
-    res.push(sortedArr2[p2]);
-    p2++;
-  }
-  return res;
+  return [...sorted, ...left, ...right];
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
