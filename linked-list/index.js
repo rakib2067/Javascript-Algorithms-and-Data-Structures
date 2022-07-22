@@ -78,11 +78,39 @@ class LinkedList {
     return current;
   }
   set(index, data) {
-    if (index < 0 || index > this.length) {
+    if (!this.get(index)) {
       return null;
     }
     let node = this.get(index);
     node.data = data;
+    return true;
+  }
+  remove(index) {
+    if (!this.get(index)) {
+      return false;
+    }
+    if (index == 0) {
+      return this.shift();
+    }
+    let toRemove = this.get(index);
+    let prev = this.get(index - 1);
+    prev.next = prev.next.next;
+    this.length--;
+    return toRemove;
+  }
+
+  insert(index, data) {
+    if (!this.get(index)) {
+      return false;
+    }
+    if (index == 0) {
+      this.unshift(data);
+      return true;
+    }
+    let current = this.get(index);
+    let prev = this.get(index - 1);
+    prev.next = new Node(data, current);
+    this.length++;
     return true;
   }
 }
