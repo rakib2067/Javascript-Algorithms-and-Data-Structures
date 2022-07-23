@@ -5,18 +5,22 @@
 // merge([1,5], [4,6,7]) === [1,4,5,6,7]
 // merge([4,6,7], [1,5]) === [1,4,5,6,7]
 
-function merge(sortedArr1, sortedArr2) {
+function merge(arr1, arr2) {
   let sorted = [];
-  let left = [...sortedArr1];
-  let right = [...sortedArr2];
-  while (left.length && right.length) {
-    if (left[0] < right[0]) {
-      sorted.push(left.shift());
-    } else {
-      sorted.push(right.shift());
+
+  let i = 0;
+  let j = 0;
+
+  while (i < arr1.length || j < arr2.length) {
+    if (arr1[i] <= arr2[j] || j >= arr2.length) {
+      sorted.push(arr1[i]);
+      i++;
+    } else if (arr1[i] > arr2[j] || i >= arr1.length) {
+      sorted.push(arr2[j]);
+      j++;
     }
   }
-  return [...sorted, ...left, ...right];
+  return sorted;
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
