@@ -68,6 +68,9 @@ class BinarySearchTree {
     return visited;
   }
   DFS() {
+    return this.DFSPreorder();
+  }
+  DFSPreorder() {
     if (!this.root) return [];
 
     let visited = [];
@@ -76,6 +79,19 @@ class BinarySearchTree {
       visited.push(node);
       if (node.left) traverse(node.left);
       if (node.right) traverse(node.right);
+    }
+    traverse(current);
+    return visited;
+  }
+  DFSPostorder() {
+    if (!this.root) return [];
+    let visited = [];
+    let current = this.root;
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+
+      if (node.right) traverse(node.right);
+      visited.push(node);
     }
     traverse(current);
     return visited;
@@ -227,6 +243,26 @@ describe("DFS()", () => {
     assert.deepEqual(
       res.map((node) => node.value),
       [8, 3, 1, 6, 10, 14]
+    );
+  });
+  it("can traverse DF Postorder.", () => {
+    const BST = new BinarySearchTree();
+    BST.insert(10);
+    BST.insert(15);
+    BST.insert(20);
+    BST.insert(6);
+    BST.insert(8);
+    BST.insert(3);
+    const res = BST.DFSPostorder();
+    //          10
+    //        /   \
+    //       6     15
+    //      / \      \
+    //     3   8     20
+
+    assert.deepEqual(
+      res.map((node) => node.value),
+      [3, 8, 6, 20, 15, 10]
     );
   });
 });
