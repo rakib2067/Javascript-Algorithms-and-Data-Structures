@@ -59,11 +59,25 @@ class BinarySearchTree {
     let visited = [];
     queue.push(this.root);
     while (queue.length) {
-      visited.push(queue.shift());
-      let current = visited[visited.length - 1];
+      let current = queue.shift();
+      visited.push(current);
+
       if (current.left) queue.push(current.left);
       if (current.right) queue.push(current.right);
     }
+    return visited;
+  }
+  DFS() {
+    if (!this.root) return [];
+
+    let visited = [];
+    let current = this.root;
+    function traverse(node) {
+      visited.push(node);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(current);
     return visited;
   }
 }
