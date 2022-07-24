@@ -100,8 +100,8 @@ class DoublyLinkedList {
   }
   insert(index, data) {
     if (index < 0 || index > this.length) return false;
-    if (index == 0) return this.unshift(data);
-    if (index == this.length) return this.push(data);
+    if (index == 0) return !!this.unshift(data);
+    if (index == this.length) return !!this.push(data);
 
     let newNode = new Node(data);
     let prevNode = this.get(index);
@@ -114,6 +114,23 @@ class DoublyLinkedList {
 
     this.length++;
     return true;
+  }
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index == 0) return this.shift();
+    if (index == this.length - 1) return this.pop();
+
+    let toRemove = this.get(index);
+    let next = toRemove.next;
+    let before = toRemove.prev;
+    before.next = next;
+    next.prev = before;
+
+    toRemove.next = null;
+    toRemove.prev = null;
+
+    this.length--;
+    return toRemove;
   }
 }
 
