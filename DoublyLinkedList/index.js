@@ -92,6 +92,29 @@ class DoublyLinkedList {
     }
     return current;
   }
+  set(index, data) {
+    if (!this.get(index)) return false;
+    let node = this.get(index);
+    node.data = data;
+    return true;
+  }
+  insert(index, data) {
+    if (index < 0 || index > this.length) return false;
+    if (index == 0) return this.unshift(data);
+    if (index == this.length) return this.push(data);
+
+    let newNode = new Node(data);
+    let prevNode = this.get(index);
+
+    newNode.next = prevNode;
+    newNode.prev = prevNode.prev;
+
+    prevNode.prev.next = newNode;
+    prevNode.prev = newNode;
+
+    this.length++;
+    return true;
+  }
 }
 
 let list = new DoublyLinkedList();
