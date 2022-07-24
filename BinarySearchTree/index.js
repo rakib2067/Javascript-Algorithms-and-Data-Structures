@@ -10,6 +10,30 @@ class BinarySearchTree {
   constructor() {
     this.root = null;
   }
+  insert(value) {
+    let newNode = new Node(value);
+    if (!this.root) {
+      this.root = newNode;
+      return this;
+    }
+    let current = this.root;
+    while (true) {
+      if (value == current.value) return undefined;
+      if (value > current.value) {
+        if (!current.right) {
+          current.right = newNode;
+          return this;
+        }
+        current = current.right;
+      } else if (value < current.value) {
+        if (!current.left) {
+          current.left = newNode;
+          return this;
+        }
+        current = current.left;
+      }
+    }
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -127,7 +151,10 @@ describe("BFS()", () => {
     //      / \      \
     //     1   6     14
 
-    assert.deepEqual(res.map(node => node.value), [8, 3, 10, 1, 6, 14]);
+    assert.deepEqual(
+      res.map((node) => node.value),
+      [8, 3, 10, 1, 6, 14]
+    );
   });
 });
 
@@ -151,7 +178,10 @@ describe("DFS()", () => {
     //      / \      \
     //     1   6     14
 
-    assert.deepEqual(res.map(node => node.value), [8, 3, 1, 6, 10, 14]);
+    assert.deepEqual(
+      res.map((node) => node.value),
+      [8, 3, 1, 6, 10, 14]
+    );
   });
 });
 
