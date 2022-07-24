@@ -35,10 +35,12 @@ class DoublyLinkedList {
     if (this.length == 0) return undefined;
     let popped = this.tail;
     if (this.length == 1) {
-      this.clear();
+      this.head = null;
+      this.tail = null;
     } else {
       let newTail = popped.prev;
       newTail.next = null;
+      popped.prev = null;
       this.tail = newTail;
     }
     this.length--;
@@ -47,14 +49,27 @@ class DoublyLinkedList {
   shift() {
     if (this.length == 0) return undefined;
     let removed = this.head;
-    if (this.length == 1) this.clear();
-    else {
+    if (this.length == 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
       let newHead = removed.next;
       newHead.prev = null;
+      removed.next = null;
       this.head = newHead;
     }
     this.length--;
     return removed;
+  }
+  unshift(data) {
+    if (!this.head) return this.push(data);
+    let newNode = new Node(data);
+    let oldHead = this.head;
+    newNode.next = oldHead;
+    oldHead.prev = newNode;
+    this.head = newNode;
+    this.length++;
+    return this;
   }
 }
 
