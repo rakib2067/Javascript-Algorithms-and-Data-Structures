@@ -53,6 +53,19 @@ class BinarySearchTree {
       }
     }
   }
+  BFS() {
+    if (!this.root) return [];
+    let queue = [];
+    let visited = [];
+    queue.push(this.root);
+    while (queue.length) {
+      visited.push(queue.shift());
+      let current = visited[visited.length - 1];
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+    return visited;
+  }
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
