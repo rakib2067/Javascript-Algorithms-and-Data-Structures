@@ -13,15 +13,23 @@ class BinaryHeap {
     return this.values;
   }
   bubbleUp() {
+    //getting last value of array
     let index = this.values.length - 1;
     let element = this.values[index];
-    while (true) {
-      let parentIdx = Math.floor(index - 1 / 2);
+
+    while (index > 0) {
+      //Getting parent node of our current element
+      let parentIdx = Math.floor((index - 1) / 2);
       let parent = this.values[parentIdx];
+
       if (element <= parent) break;
+
+      //if bigger then swap values
       this.values[parentIdx] = element;
       this.values[index] = parent;
-      index = parent;
+
+      //overwrite to new position and repeat till correctly placed
+      index = parentIdx;
     }
   }
 }
