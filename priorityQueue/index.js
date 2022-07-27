@@ -2,9 +2,38 @@
 // For bubbleUp you can find parent index by doing Math.floor((idx - 1) / 2);
 // For sinkDown you can find child indexes with (idx * 2 + 1) (idx * 2 + 2)
 // Hint: You can copy most of the code from our Max Binary Heap Implementation
-class Node {}
+class Node {
+  constructor(data, priority) {
+    this.val = data;
+    this.priority = priority;
+  }
+}
 
-class PriorityQueue {}
+class PriorityQueue {
+  constructor() {
+    this.root = null;
+    this.values = [];
+  }
+  enqueue(value, priority) {
+    let newNode = new Node(value, priority);
+    this.values.push(newNode);
+    this.bubbleUp();
+  }
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    let element = this.values[idx];
+    while (idx > 0) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (element.priority >= parent.priority) break;
+
+      //swap
+      this.values[parentIdx] = element;
+      this.values[idx] = parent;
+      idx = parentIdx;
+    }
+  }
+}
 
 mocha.setup("bdd");
 const { assert } = chai;
@@ -57,17 +86,20 @@ describe("Dequeue", () => {
 
     assert.equal(emergencyRoom.dequeue().val, "gunshot wound");
 
-    assert.deepEqual(emergencyRoom.values.map(node => node.val), [
-      "heart attack",
-      "stomach cramp",
-      "migraine",
-      "food poisoning",
-      "back pain",
-      "sore throat",
-      "coughing",
-      "headache",
-      "fever"
-    ]);
+    assert.deepEqual(
+      emergencyRoom.values.map((node) => node.val),
+      [
+        "heart attack",
+        "stomach cramp",
+        "migraine",
+        "food poisoning",
+        "back pain",
+        "sore throat",
+        "coughing",
+        "headache",
+        "fever",
+      ]
+    );
 
     let emergencyRoom2 = new PriorityQueue();
     emergencyRoom2.enqueue("gunshot wound", 5);
@@ -82,17 +114,20 @@ describe("Dequeue", () => {
     emergencyRoom2.enqueue("food poisoning", 17);
 
     emergencyRoom2.dequeue();
-    assert.deepEqual(emergencyRoom2.values.map(node => node.val), [
-      "heart attack",
-      "stomach cramp",
-      "fever",
-      "migraine",
-      "food poisoning",
-      "back pain",
-      "headache",
-      "coughing",
-      "sore throat"
-    ]);
+    assert.deepEqual(
+      emergencyRoom2.values.map((node) => node.val),
+      [
+        "heart attack",
+        "stomach cramp",
+        "fever",
+        "migraine",
+        "food poisoning",
+        "back pain",
+        "headache",
+        "coughing",
+        "sore throat",
+      ]
+    );
   });
 });
 

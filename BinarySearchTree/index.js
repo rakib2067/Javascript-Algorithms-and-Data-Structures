@@ -41,18 +41,15 @@ class BinarySearchTree {
     while (true) {
       if (value == current.value) return current;
       else if (value > current.value) {
-        if (!current.right) {
-          return false;
-        }
+        if (!current.right) return false;
         current = current.right;
-      } else if (value < current.value) {
-        if (!current.left) {
-          return false;
-        }
+      } else {
+        if (!current.left) return false;
         current = current.left;
       }
     }
   }
+
   BFS() {
     if (!this.root) return [];
     let queue = [];

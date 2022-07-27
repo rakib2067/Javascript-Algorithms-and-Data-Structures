@@ -130,19 +130,3 @@ class SinglyLinkedList {
     return this;
   }
 }
-
-// if (this.length <= 1) return;
-// //reverseing head and tail
-// let node = this.head; //starting point
-// this.head = this.tail;
-// this.tail = node;
-
-// let next;
-// let prev = null;
-// for (let i = 0; i < this.length; i++) {
-//   next = node.next; //storing the value of the next variable
-//   node.next = prev; //overwriting next property to node before it
-//   prev = node; //setting prev to be the current noed
-//   node = next; //node is now equal to the next node
-// }
-// return this;
