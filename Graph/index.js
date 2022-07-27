@@ -42,6 +42,24 @@ class Graph {
     dfs(vertex);
     return results;
   }
+  dfsIterative(vertex) {
+    let stack = [vertex];
+    let results = [];
+    let visited = {};
+    visited[vertex] = true;
+    let current;
+    while (stack.length) {
+      current = stack.pop();
+      results.push(current);
+      this.adjacencyList[current].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          stack.push(neighbour);
+        }
+      });
+    }
+    return results;
+  }
 }
 
 let graph = new Graph();
@@ -61,6 +79,7 @@ graph.addEdge("D", "F");
 graph.addEdge("E", "F");
 
 graph.depthFirstRecursive("A");
+graph.dfsIterative("A");
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
