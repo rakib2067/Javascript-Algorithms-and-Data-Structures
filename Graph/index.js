@@ -2,8 +2,23 @@ class Graph {
   constructor() {
     this.adjacencyList = {};
   }
+  addVertex(name) {
+    if (!this.adjacencyList[name]) this.adjacencyList[name] = [];
+  }
+  addEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1].push(vertex2);
+    this.adjacencyList[vertex2].push(vertex1);
+  }
+  removeEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      (item) => item !== vertex2
+    );
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+      (item) => item !== vertex1
+    );
+  }
 }
-
+class Vertex {}
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -39,7 +54,7 @@ describe("Graph", () => {
     g.addVertex("Tokyo");
     assert.equal(g.adjacencyList["Tokyo"][0], "SOMETHING");
   });
-  it.skip("addEdge() works.", () => {
+  it("addEdge() works.", () => {
     let g = new Graph();
     g.addVertex("Tokyo");
     g.addVertex("San Francisco");
@@ -47,7 +62,7 @@ describe("Graph", () => {
     assert.equal(g.adjacencyList["Tokyo"][0], "San Francisco");
     assert.equal(g.adjacencyList["San Francisco"][0], "Tokyo");
   });
-  it.skip("removeEdge() works.", () => {
+  it("removeEdge() works.", () => {
     let g = new Graph();
     g.addVertex("Tokyo");
     g.addVertex("San Francisco");
@@ -57,7 +72,7 @@ describe("Graph", () => {
     assert.isNotOk(g.adjacencyList["Tokyo"][0]);
     assert.equal(g.adjacencyList["San Francisco"].length, 0);
   });
-  it.skip("removeVertex() works.", () => {
+  it("removeVertex() works.", () => {
     let g = new Graph();
     g.addVertex("Tokyo");
     g.addVertex("San Francisco");
@@ -66,7 +81,7 @@ describe("Graph", () => {
     assert.isNotOk(g.adjacencyList["Tokyo"][0]);
     assert.isNotOk(g.adjacencyList["San Francisco"]);
   });
-  it.skip("depthFirst works.", () => {
+  it("depthFirst works.", () => {
     let g = new Graph();
 
     g.addVertex("A");
@@ -96,10 +111,10 @@ describe("Graph", () => {
       "E",
       "F",
       "D",
-      "B"
+      "B",
     ]);
   });
-  it.skip("breadthFirst works.", () => {
+  it("breadthFirst works.", () => {
     let g = new Graph();
 
     g.addVertex("A");

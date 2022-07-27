@@ -1,5 +1,5 @@
 class HashTable {
-  constructor(size) {
+  constructor(size = 53) {
     this.keyMap = new Array(size);
   }
 
@@ -9,6 +9,51 @@ class HashTable {
       total = total + key.charCodeAt(i);
     }
     return total % this.keyMap.length;
+  }
+  set(key, value) {
+    let index = this.hash(key);
+    if (!this.keyMap[index]) this.keyMap[index] = [];
+    this.keyMap[index].push([key, value]);
+    return this.keyMap;
+  }
+  get(key) {
+    let index = this.hash(key);
+    if (this.keyMap[index]) {
+      for (let i = 0; i <= this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] == key) {
+          return this.keyMap[index][i][1];
+        }
+      }
+    }
+    return undefined;
+  }
+  keys() {
+    let keys = [];
+    let arr = this.keyMap;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]) {
+        for (let j = 0; j < arr[i].length; i++) {
+          if (!keys.includes(arr[i][j][0])) {
+            keys.push(arr[i][j][0]);
+          }
+        }
+      }
+    }
+    return keys;
+  }
+  values() {
+    let values = [];
+    let arr = this.keyMap;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]) {
+        for (let j = 0; j < arr[i].length; i++) {
+          if (!values.includes(arr[i][j][1])) {
+            values.push(arr[i][j][1]);
+          }
+        }
+      }
+    }
+    return values;
   }
 }
 
@@ -48,7 +93,7 @@ describe("set()", () => {
     assert.isNotOk(ht.keyMap[1]);
     assert.deepEqual(ht.keyMap[5], [
       ["yellow", "#ffff00"],
-      ["indigo", "#4b0082"]
+      ["indigo", "#4b0082"],
     ]);
     assert.deepEqual(ht.keyMap[16], [["blue", "#0000ff"]]);
   });
@@ -80,7 +125,7 @@ describe.skip("keys() / values()", () => {
       "orange",
       "red",
       "violet",
-      "blue"
+      "blue",
     ]);
   });
   it("values() returns an array of values.", () => {
@@ -92,7 +137,7 @@ describe.skip("keys() / values()", () => {
       "#ffa500 ",
       "#ff0000",
       "#800080",
-      "#0000ff"
+      "#0000ff",
     ]);
   });
 });

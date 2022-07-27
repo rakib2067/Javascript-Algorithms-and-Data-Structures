@@ -41,7 +41,6 @@ class PriorityQueue {
     return min;
   }
   sinkDown() {
-    //compare with children to see who has most priority;
     let idx = 0;
     let length = this.values.length;
     let current = this.values[idx];
