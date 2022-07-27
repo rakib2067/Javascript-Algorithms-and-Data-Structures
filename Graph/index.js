@@ -60,6 +60,28 @@ class Graph {
     }
     return results;
   }
+  bfs(start) {
+    //bfs we are using a queue so that neighbours get checked first
+    let visited = {};
+    let results = [];
+    let queue = [start];
+    let current;
+    visited[start] = true;
+    //we remove the first vertex in the queue and push it onto the results
+    //then for every neighbour we mark them as visited and then push them onto the queue
+    //now they are added to the queue, they will be pushed onto results array and removed from the queue
+    while (queue.length) {
+      current = queue.shift();
+      results.push(visited);
+      this.adjacencyList[current].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          queue.push(neighbour);
+        }
+      });
+    }
+    return results;
+  }
 }
 
 let graph = new Graph();
