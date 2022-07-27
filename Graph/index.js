@@ -17,8 +17,14 @@ class Graph {
       (item) => item !== vertex1
     );
   }
+  removeVertex(vertex) {
+    while (this.adjacencyList[vertex].length) {
+      let adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex];
+  }
 }
-class Vertex {}
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
