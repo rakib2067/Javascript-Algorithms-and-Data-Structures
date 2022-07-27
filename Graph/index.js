@@ -24,7 +24,43 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+  depthFirstRecursive(vertex) {
+    if (!this.adjacencyList[vertex]) return;
+    let results = [];
+    let visited = {};
+    const adjacencyList = this.adjacencyList;
+    function dfs(vertex) {
+      if (!vertex) return null;
+      results.push(vertex);
+      visited[vertex] = true;
+      adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          return dfs(neighbour);
+        }
+      });
+    }
+    dfs(vertex);
+    return results;
+  }
 }
+
+let graph = new Graph();
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
+
+graph.addEdge("A", "B");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
+
+graph.depthFirstRecursive("A");
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
