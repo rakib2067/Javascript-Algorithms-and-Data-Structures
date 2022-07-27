@@ -33,6 +33,45 @@ class PriorityQueue {
       idx = parentIdx;
     }
   }
+  dequeue() {
+    let min = this.values[0];
+    this.values[0] = this.values.pop();
+    this.sinkDown();
+
+    return min;
+  }
+  sinkDown() {
+    //compare with children to see who has most priority;
+    let idx = 0;
+    let length = this.values.length;
+    let current = this.values[idx];
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+
+      let swap = null;
+      let leftChild, rightChild;
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild.priority < current.priority) {
+          swap = leftChildIdx;
+        }
+      }
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap == null && rightChild.priority < current.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+      if (swap == null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = current;
+      idx = swap;
+    }
+  }
 }
 
 mocha.setup("bdd");
